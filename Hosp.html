@@ -1,0 +1,99 @@
+<html>
+<head>
+<script type="text/javascript">
+function validate(){
+var a=document.getElementById("age").value;
+var v=document.getElementById("visit").value;
+var d=document.getElementById("Date").value;
+d=new Date(d);
+var Dep=document.getElementById("dep").value;
+var message=document.getElementById("p1");
+var d1=new Date("2022-05-01"); 
+var d2=new Date("2022-05-31");  
+var i; 
+var b=false;
+var D=["Peadiatrician","Opthalmology","Cardiac","Dental"];
+try{
+if(isNaN(a) || a<0) throw "Age not valid";
+
+}
+catch( err ){
+ message.innerHTML+="Error: "+err;
+}
+try{
+if(isNaN(v) || v<0) throw "No. of visits not valid";
+
+}
+catch( err ){
+ message.innerHTML+="<br>Error: "+err;
+}
+try{
+if(d >= d1 && d<=d2) throw "Please select another date";
+
+}
+catch( err ){
+ message.innerHTML+="<br>Error: "+err;
+}
+for(i=0;i<D.length;i++){
+  if(Dep==D[i]){
+     b=true;
+  }
+}
+try{
+
+ if(!b) throw "Department not valid";
+
+}
+
+catch( err ){
+ message.innerHTML+="<br>Error: "+err;
+}
+
+}
+</script>
+
+</head>
+<body>
+<form>
+<table>
+					<tr>
+						<label> Patient Name<label><input type="text"  id="name">
+					</tr>
+					<br><br>
+                                        <tr>
+						<label> Age</label><input type="text" id="age"> 
+					</tr>
+					
+					<br><br>
+                                       
+                                        <tr>
+						<label>Gender:</label>
+						<select id="gender">
+							<option value="male">male</option>
+							<option value="female">female</option>
+							<option value="others">others</option>
+						</select>
+					</tr>
+                                        <br><br>
+					<tr>
+						<label> No. of visits</label><input type="number" id="visit">
+					</tr>
+                                         <br><br>
+                                         <tr>
+						<label> Appointment Date</label><input type="date"  id="Date">
+					</tr> 
+					<br><br>
+                                        <tr>
+						<label> Department <label><input type="text"  id="dep">
+					</tr>
+					<br><br>
+					<tr>
+                                          <input type="button" onclick="validate()" value="Register">
+					</tr>
+				</table>
+</form>
+<p id="p1">
+
+</p>
+</body>
+</html>

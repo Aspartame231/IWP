@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <title>Movie Rating</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+      #tbl{
+        width:50%;
+        margin:50px auto;
+        border-collapse:collapse;
+      }
+	  #tb1 th{
+	    font-size:30px;
+	  }
+      #tbl td,#tbl th{
+        border:3px solid black;
+        padding:15px;
+      }
+	  .rmv{
+	   background-color:red;
+	  }
+	  #add_row{
+	  background-color:green;
+	  font-size:20px;
+	  }
+	  
+    </style>
+  </head>
+  <body bgcolor="powderblue">
+    <label>Title</label><input type="text" placeholder="Movie title" id="title"> <label>Rating</label><input type="text" placeholder="Rating" id="rating"><br><br>
+	<input type='button' value='Add Movie' id='add_row'>
+    <table id='tbl'>
+      <thead>
+        <tr>
+          <th class="text">Title</th>
+          <th class="num">Rating</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+    <script>
+      $(document).ready(function(){
+        $("#add_row").click(function(){
+          var T= document.getElementById("title").value;
+		  var R= document.getElementById("rating").value;
+		  var T1=document.getElementById("title");
+		   var R1= document.getElementById("rating");
+		  var row="<tr> <td>"+T+"</td> <td>"+R+"</td> <td><input type='button' value='Remove' class='rmv'></td> </tr>";
+          $("#tbl tbody").append(row);
+		 
+		  
+        });
+        
+        $("body").on("click",".rmv",function(){
+          $(this).closest("tr").remove();
+        });
+		$("th").each(function(column){
+		   
+		    $(this).data("type", $(this).attr("class"));
+		   $(this).click(function(){
+		     var records=$("table").find("tbody > tr");
+			 records.sort(function(a,b){
+			   
+				var type= $(this).data("type");
+				var v1=$(a).children("td").eq(column).text();
+				var v2=$(b).children("td").eq(column).text();
+				if(type == "num"){
+				   v1 *= 1;
+				   v2 *= 2;
+				}
+				return(v1 < v2)? -1 : (v1 > v2 ? 1 : 0)
+			 
+			 });
+		      $.each(records,function(index,row){
+			     $("tbody").append(row);
+			  
+			  });
+		   });
+		});
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<html>
+<head>
+<style>
+body{
+  background-color: pink;
+  text-align: center;
+border: 5px solid #2f2f2f;
+}
+.header{
+      
+      font-family: Ravie;
+}
+button {
+  background-color: green; 
+  border: 5px solid black;
+  
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+img{
+border: 10px solid green;
+}
+</style>
+</head>
+
+<body>
+<h1 class="header"> IMAGE LOOP </h1><br>
+
+<img src="C:\Users\admin\OneDrive\Desktop\Main.jfif" id="main"  alt=""><br><br>
+<button onclick="Next()"> Next</button>
+<button onclick="Add()"> ADD </button>
+<h2>
+<p class="content">
+  This AMOGH(20BDS0172)'s Image loop. 
+</p>
+
+   ------------------------------------------------<br>
+   -----------------text---------------------------<br>
+   ------------------------------------------------<br>
+</h2>
+
+<script type="text/javascript">
+var images=["1.jfif","2.jfif","3.jfif","4.jfif"]
+var AddImg=["Add.jfif","Add1.jfif","Add2.jfif"]
+var i=0;
+var j=0;
+m=3;
+function Next(){
+    document.getElementById("main").src=images[i];
+   i++;
+   if( i > m ) { i=0;}
+      
+
+}
+ 
+function Add(){
+  let l=images.length;
+  let s=AddImg.length
+  images[l]=AddImg[j];
+  m++;
+  j++;
+  if( j > 2) { j=0;}
+}
+
+</script>
+
+</body>
+</html>
